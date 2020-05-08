@@ -1,0 +1,7 @@
+.row {
+  display: flex;
+  margin: 15px 0;
+}
+#mat-checkbox-1 {
+  margin-right: 15px;
+}

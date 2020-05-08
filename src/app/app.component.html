@@ -1,0 +1,53 @@
+<div class="container">
+  <h1 class="mat-display-3" style="text-align: center; margin: 30px 0;">
+    Chuck Norris jokes
+  </h1>
+  <mat-tab-group backgroundColor="primary">
+    <mat-tab label="HOME" style="margin-bottom: 20px; overflow: hidden;">
+      <div class="row">
+        <div
+          *ngFor="let category of categories; trackBy: trackByIndex"
+          [(ngModel)]="categories[index]"
+          ngDefaultControl
+        >
+          <mat-checkbox
+            [checked]="categories.indexOf(category) >= 0"
+            (change)="filterCategory(category)"
+            >{{ category }}</mat-checkbox
+          >
+        </div>
+      </div>
+      <div *ngFor="let joke of filteredJokes; let i = index">
+        <app-joke-card
+          [joke]="joke"
+          [index]="i"
+          [position]="filteredJokes.length - 1"
+          (jokeLiked)="likeJoke($event)"
+          (jokeDislaked)="dislikeJoke($event)"
+          (showMoreJokes)="renderMoreJokes($event)"
+        ></app-joke-card>
+      </div>
+      <div>
+        <mat-spinner *ngIf="loading" style="margin: 0 auto;"></mat-spinner>
+      </div>
+    </mat-tab>
+    <mat-tab>
+      <ng-template matTabLabel>
+        <span
+          matBadge="{{ likedJokes.length > 0 ? likedJokes.length : '' }}"
+          matBadgeOverlap="false"
+          matBadgeColor="accent"
+          >LIKES</span
+        >
+      </ng-template>
+      <div *ngFor="let joke of likedJokes; let i = index">
+        <app-joke-card
+          [joke]="joke"
+          [index]="i"
+          (jokeLiked)="likeJoke($event)"
+          (jokeDislaked)="dislikeJoke($event)"
+        ></app-joke-card>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>
