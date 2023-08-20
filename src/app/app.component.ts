@@ -13,7 +13,7 @@ export interface Joke {
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  title = 'chuch';
+  title = 'chuck';
   jokes: Joke[] = [];
   jokesToShow: Joke[];
   filteredJokes: Joke[];
@@ -21,14 +21,14 @@ export class AppComponent implements OnInit {
   categories: string[] = [];
   filterCategories: string[] = [];
   loading = false;
-  index;
+  index: number
   get getJokesToShow() {
     return this.jokesToShow;
   }
   constructor(private http: HttpClient) {}
   ngOnInit() {
     this.http
-      .get<{ type: string; value: Joke[] }>('http://api.icndb.com/jokes')
+      .get<{ type: string; value: Joke[] }>('https://api.chucknorris.io/jokes/random')
       .subscribe((res) => {
         this.jokes = [...res.value];
         this.jokesToShow = this.jokes.slice(0, 10);
@@ -36,7 +36,7 @@ export class AppComponent implements OnInit {
       });
     this.http
       .get<{ type: string; value: string[] }>(
-        'https://api.icndb.com/categories'
+        'https://api.chucknorris.io/jokes/categories'
       )
       .subscribe((res) => {
         this.categories = [...res.value];
@@ -106,7 +106,7 @@ export class AppComponent implements OnInit {
       }
     }
   }
-  trackByIndex(index: number): any {
+  trackByIndex(index: number): number {
     return index;
   }
 }

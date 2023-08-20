@@ -3,6 +3,7 @@ import { Joke } from './app.component';
 
 @Component({
   selector: 'app-joke-card',
+  styles: [],
   template: `
     <mat-card
       style="margin-bottom: 20px;"
@@ -12,9 +13,9 @@ import { Joke } from './app.component';
     >
       <mat-card-content style="padding-bottom: 5px;">
         <div *ngIf="joke.categories.length > 0; else noCategories">
-          <mat-chip-list *ngFor="let category of joke.categories">
-            <mat-chip>{{ category }}</mat-chip>
-          </mat-chip-list>
+          <mat-chip-listbox *ngFor="let category of joke.categories">
+            <mat-chip-option>{{ category }}</mat-chip-option>
+          </mat-chip-listbox>
         </div>
         <ng-template #noCategories><mat-chip>regular</mat-chip> </ng-template>
 

@@ -1,0 +1,6 @@
+{
+    "/api": {
+      "target": "https://api.chucknorris.io",
+      "secure": false
+    }
+  }
