@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
 
 export interface Joke {
   id: number;
@@ -67,34 +67,34 @@ export class AppComponent implements OnInit {
       }, 500);
     }
   }
-  filterCategory(category) {
+  filterCategory(category:string) {
     if (this.filterCategories.includes(category)) {
       const copyOfFilterCategories = [...this.filterCategories];
       const categoryIndex = copyOfFilterCategories.indexOf(category);
       copyOfFilterCategories.splice(categoryIndex, 1);
       this.filterCategories = [...copyOfFilterCategories];
-      const newJokestoShow = this.jokesToShow.filter((joke) => {
+      const newJokesToShow = this.jokesToShow.filter((joke) => {
         if (this.showCategory(joke.categories)) {
           return true;
         } else {
           return false;
         }
       });
-      this.filteredJokes = newJokestoShow;
+      this.filteredJokes = newJokesToShow;
     } else {
       const filterCopy = [...this.filterCategories];
       this.filterCategories = [...filterCopy, category];
-      const newJokestoShow = this.jokesToShow.filter((joke) => {
+      const newJokesToShow = this.jokesToShow.filter((joke) => {
         if (this.showCategory(joke.categories)) {
           return true;
         } else {
           return false;
         }
       });
-      this.filteredJokes = newJokestoShow;
+      this.filteredJokes = newJokesToShow;
     }
   }
-  showCategory(categories) {
+  showCategory(categories:string[]) {
     if (categories.length === 0) {
       return true;
     }

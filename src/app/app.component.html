@@ -23,7 +23,7 @@
           [index]="i"
           [position]="filteredJokes.length - 1"
           (jokeLiked)="likeJoke($event)"
-          (jokeDislaked)="dislikeJoke($event)"
+          (jokeDisliked)="dislikeJoke($event)"
           (showMoreJokes)="renderMoreJokes($event)"
         ></app-joke-card>
       </div>
@@ -45,7 +45,7 @@
           [joke]="joke"
           [index]="i"
           (jokeLiked)="likeJoke($event)"
-          (jokeDislaked)="dislikeJoke($event)"
+          (jokeDisliked)="dislikeJoke($event)"
         ></app-joke-card>
       </div>
     </mat-tab>

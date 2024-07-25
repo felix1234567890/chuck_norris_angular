@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Joke } from './app.component';
 
 @Component({
@@ -39,7 +39,7 @@ export class JokeCardComponent {
   @Output()
   jokeLiked = new EventEmitter();
   @Output()
-  jokeDislaked = new EventEmitter();
+  jokeDisliked = new EventEmitter();
   @Output()
   showMoreJokes = new EventEmitter<boolean>();
 
@@ -47,7 +47,7 @@ export class JokeCardComponent {
     this.jokeLiked.emit(id);
   }
   dislikeJoke(id) {
-    this.jokeDislaked.emit(id);
+    this.jokeDisliked.emit(id);
   }
   showMore(val) {
     this.showMoreJokes.emit(val);
